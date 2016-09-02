@@ -31,3 +31,5 @@ The repository contains the following files:
 
 - **Data.mat:** Data, Jacobian and target solution 
 
+If you use this code, please cite Chamorro-Servent et al. Use of Split Bregman denoising for iterative reconstruction in fluorescence diffuse optical tomography. J Biomed Opt, 18(7):076016, 2013. http://dx.doi.org/10.1117/1.JBO.18.7.076016. If you need to contact the author, please do so at juanabascal78@gmail.com, juchamser@gmail.com, desco@hggm.es
+
