@@ -9,7 +9,7 @@ Our particular choices are explained as follows:
 
 - The Split Bregman formulation allows to solve the total variation denoising problem in a fast and computationally efficient way. At each iteration the solution is given by analytical formulas. A linear system  can be solved in the Fourier domain, keeping the size of the problem (the Hessian) equal to the number of voxels in the image, or by using Gauss-Seidel method, which exploits the block diagonal structure of the Hessian. 
 
-This demo reconstructs fluorescence diffuse optical tomography data as presented in the paper **Use of Split Bregman denoising for iterative reconstruction in fluorescence diffuse optical tomography. J Chamorro-Servent, J F P J Abascal, J Aguirre, S Arridge, T Correia, J Ripoll, M Desco, J J Vaquero. J Biomed Opt, 18(7):076016, 2013.** DOI: http://dx.doi.org/10.1117/1.JBO.18.7.076016 . We use a smaller problem than the one solved in the paper to reduce computaion time to few seconds.  
+This demo reconstructs fluorescence diffuse optical tomography data as presented in the paper **Use of Split Bregman denoising for iterative reconstruction in fluorescence diffuse optical tomography. J Chamorro-Servent, J F P J Abascal, J Aguirre, S Arridge, T Correia, J Ripoll, M Desco, J J Vaquero. J Biomed Opt, 18(7):076016, 2013.** DOI: http://dx.doi.org/10.1117/1.JBO.18.7.076016 . We use a smaller problem than the one solved in the paper to reduce computation time to few seconds.  
 
 ##  Repository files ##
 
