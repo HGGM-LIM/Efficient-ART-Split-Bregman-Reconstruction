@@ -34,9 +34,6 @@
 % diffuse optical tomography but it can be applied to other imaging
 % modalities. 
 %
-% For this data, ART takes 5 s for one reconstruction (0.5 s per iteration)
-% and SB denoising takes 0.02 s to denoised an image. 
-%
 % 
 % If you use this code, please cite Chamorro-Servent et al. Use of Split
 % Bregman denoising for iterative reconstruction in fluorescence diffuse
@@ -48,11 +45,11 @@
 % Universidad Carlos III de Madrid, Madrid, Spain
 % juanabascal78@gmail.com, juchamser@gmail.com, desco@hggm.es
 
-rand('seed',0);
-
+ 
 % READ SIMULATED DATA 
 % Load data, Jacobian matrix and target image
-load('Data','data','JacMatrix','uTarget');
+load('DataRed','data','JacMatrix','uTarget');
+ 
 [nr nc]     = size(JacMatrix);
 
 % Display target image in the discretized domain
@@ -64,12 +61,14 @@ z           = linspace(0,10,N(3));
 % Uncomment below to get a plot of all slices
 % h           = Plot2DMapsGridSolution(reshape(uTarget,N),X,Y,Z,3); colorbar;
 
+rand('seed',0);
+
 % Add Gaussian noise
 data       = data + 0.01*max(data)*randn(length(data),1);
 
 % Randomized index of Jacobian rows for ART reconstruction
-indRand     = randperm(length(data));
-%indRand     = 1:nr; % Uncomment to remove randomized index
+% indRand     = randperm(length(data));
+% indRand     = 1:nr; % Uncomment to remove randomized index
 
 % -------------------------------------------------------------------------
 % ART
@@ -77,18 +76,18 @@ indRand     = randperm(length(data));
 % It requires selecting few parameters: 
 %    numIterART = number of iterations. The more iterations the better fit
 % of the data (in this case it converges in 30 iterations) 
-%    relaxParam = relaxation parameter (between 0 and 1) Choose 0.1 to
+%    relaxParam = relaxation parameter (between 0 and 1). Choose 0.1 to
 % remove noise and 0.9 to get a closer fit of the data
 numIterART  = 30;   % 
 relaxParam  = 0.1;
 u0          = zeros(nc,1);
 
-fprintf('Solving ART reconstruction ... (it takes around 2 min)\n');
+fprintf('Solving ART reconstruction ... (it takes around 1 s)\n');
 tic; 
-uART = ARTReconstruction(JacMatrix(indRand,:),data(indRand),relaxParam,numIterART,u0); 
+uART = ARTReconstruction(JacMatrix,data,relaxParam,numIterART,u0); 
 toc
 uART     = reshape(uART,N);
-% h = Plot2DMapsGridSolution(uART,X,Y,Z,3); colorbar;
+%  h = Plot2DMapsGridSolution(uART,X,Y,Z,3); colorbar;
        
 % -------------------------------------------------------------------------
 % ART-SB  
@@ -118,7 +117,7 @@ uART     = reshape(uART,N);
 % constraint. Choose this larger than 1 (2 works fine), as TV may provide
 % an output image with lower constrast and the Bregman iteration can
 % correct for that. 
-numIter     = 25;
+numIter     = 30;
 numIterART  = 10;      
 relaxParam  = 0.9;
 uARTSB      = zeros(N);
@@ -128,12 +127,12 @@ alpha       = 1;
 nInner      = 5;
 nOuter      = 2; 
 % indRand = randperm(length(data));
-fprintf('Solving ART-SB reconstruction ... (it takes around 2 min)\n');
+fprintf('Solving ART-SB reconstruction ... (it takes around 12 s)\n');
 h = waitbar(0,'Solving ART-SB reconstruction') ;
 tic
 for it = 1:numIter
     % ART reconstruction step: Iterative linear solver
-    sol = ARTReconstruction(JacMatrix(indRand,:),data(indRand),relaxParam,numIterART,uARTSB(:)); 
+    sol = ARTReconstruction(JacMatrix,data,relaxParam,numIterART,uARTSB(:)); 
     solGrid     = reshape(sol,N);   
 
     % SB denoising step
