@@ -11,6 +11,10 @@ Our particular choices are explained as follows:
 
 This demo reconstructs fluorescence diffuse optical tomography data as presented in the paper **Use of Split Bregman denoising for iterative reconstruction in fluorescence diffuse optical tomography. J Chamorro-Servent, J F P J Abascal, J Aguirre, S Arridge, T Correia, J Ripoll, M Desco, J J Vaquero. J Biomed Opt, 18(7):076016, 2013.** DOI: http://dx.doi.org/10.1117/1.JBO.18.7.076016 . We use a smaller problem than the one solved in the paper to reduce computation time to few seconds.  
 
+
+![](https://github.com/HGGM-LIM/Efficient-ART-Split-Bregman-Reconstruction/blob/master/ModelRecImages.jpg)
+
+
 ##  Repository files ##
 
 The repository contains the following files:
