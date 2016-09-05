@@ -9,7 +9,7 @@ Our particular choices are explained as follows:
 
 - The Split Bregman formulation allows to solve the total variation denoising problem in a fast and computationally efficient way. At each iteration the solution is given by analytical formulas. A linear system  can be solved in the Fourier domain, keeping the size of the problem (the Hessian) equal to the number of voxels in the image, or by using Gauss-Seidel method, which exploits the block diagonal structure of the Hessian. 
 
-ART-SB is implemented using the following two-step approach: 
+ART-SB is implemented by iteratively solving the following two-step approach: 
 
 ![](https://github.com/HGGM-LIM/Efficient-ART-Split-Bregman-Reconstruction/blob/master/ART-SBFormula.jpg)
 
