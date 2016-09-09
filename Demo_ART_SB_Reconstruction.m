@@ -40,10 +40,10 @@
 % optical tomography. J Biomed Opt, 18(7):076016, 2013.
 % http://dx.doi.org/10.1117/1.JBO.18.7.076016        
 %
-% Juan FPJ Abascal, Judit Chamorro-Servent, Juan Aguirre
+% Judit Chamorro-Servent, Juan FPJ Abascal, Juan Aguirre
 % Departamento de Bioingenieria e Ingenieria Aeroespacial
 % Universidad Carlos III de Madrid, Madrid, Spain
-% juanabascal78@gmail.com, juchamser@gmail.com, desco@hggm.es
+% juchamser@gmail.com, juanabascal78@gmail.com, desco@hggm.es
 
  
 % READ SIMULATED DATA 
