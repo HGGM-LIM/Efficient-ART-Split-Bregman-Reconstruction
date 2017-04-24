@@ -48,15 +48,16 @@ function [x, errors, xNorms] = ARTReconstruction_Fast(A, b, relaxationParameter,
     if nargin<2 || isempty(b),
         b = A*ones(nbVariables, 1);
     end
-    if nargin<3 || isempty(nbIterations),
-        nbIterations = 100;
-    end
-    if nargin<4 || isempty(x0),
-        x0 = zeros(nbVariables, 1, 'double');
-    end
-    if nargin<4 || isempty(relaxationParameter),
+     if nargin<3 || isempty(relaxationParameter),
         relaxationParameter = 1;
     end
+    if nargin<4 || isempty(nbIterations),
+        nbIterations = 100;
+    end
+    if nargin<5 || isempty(x0),
+        x0 = zeros(nbVariables, 1, 'double');
+    end
+   
     
     wantPerformanceFigures = nargout~=1;
     
