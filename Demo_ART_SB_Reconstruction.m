@@ -143,8 +143,8 @@ h = waitbar(0,'Solving ART-SB reconstruction') ;
 tic
 for it = 1:numIter
     % ART reconstruction step: Iterative linear solver
-    %sol = ARTReconstruction_Fast(JacMatrix,data,relaxParam,numIterART,uARTSB(:)); 
-    sol = ARTReconstruction(JacMatrix,data,relaxParam,numIterART,uARTSB(:)); 
+    sol = ARTReconstruction_Fast(JacMatrix,data,relaxParam,numIterART,uARTSB(:)); 
+    %sol = ARTReconstruction(JacMatrix,data,relaxParam,numIterART,uARTSB(:)); 
     solGrid     = reshape(sol,N);   
 
     % SB denoising step
