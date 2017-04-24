@@ -49,6 +49,14 @@
 % READ SIMULATED DATA 
 % Load data, Jacobian matrix and target image
 load('DataRed','data','JacMatrix','uTarget');
+%
+% Replace the previous line by the following for a larger matrix size
+% load('Data','data','JacMatrix','uTarget');
+% but it requires to download data set from the following link: 
+% https://www.dropbox.com/s/461ub2ps0ur8uvd/Data.mat?dl=0
+% Actually the reduced Jacobian matrix (from DataRed), 700x4000, has been
+% obtained from a larger matrix (from Data), 6561x4000, by random selection
+% of rows, providing similar results! 
  
 [nr nc]     = size(JacMatrix);
 
@@ -84,7 +92,10 @@ u0          = zeros(nc,1);
 
 fprintf('Solving ART reconstruction ... (it takes around 1 s)\n');
 tic; 
-uART = ARTReconstruction(JacMatrix,data,relaxParam,numIterART,u0); 
+% uART = ARTReconstruction(JacMatrix,data,relaxParam,numIterART,u0); 
+% The following version runs 3-4 times faster; must try with larger
+% matrices to assess the difference
+uART = ARTReconstruction_Fast(JacMatrix,data,relaxParam,numIterART,u0); 
 toc
 uART     = reshape(uART,N);
 %  h = Plot2DMapsGridSolution(uART,X,Y,Z,3); colorbar;
@@ -132,6 +143,7 @@ h = waitbar(0,'Solving ART-SB reconstruction') ;
 tic
 for it = 1:numIter
     % ART reconstruction step: Iterative linear solver
+    %sol = ARTReconstruction_Fast(JacMatrix,data,relaxParam,numIterART,uARTSB(:)); 
     sol = ARTReconstruction(JacMatrix,data,relaxParam,numIterART,uARTSB(:)); 
     solGrid     = reshape(sol,N);   
 
